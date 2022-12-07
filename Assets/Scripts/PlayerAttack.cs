@@ -6,6 +6,7 @@ public class PlayerAttack : MonoBehaviour
 {
 
     public Camera gameCamera;
+    public GameObject impactEffect;
     public int maxAmmo;
     public int currentAmmo;
 
@@ -38,6 +39,7 @@ public class PlayerAttack : MonoBehaviour
                 // out serve para passar informação, se algo foi atingido o ray passa a info pro raycastHited
                 //se ray acertou um objeto, out passa ao raycast que o nome do objeto
                 {
+                    Instantiate(impactEffect, raycastHited.point, raycastHited.transform.rotation);
                     Debug.Log("estou olhando para: " + raycastHited.transform.name);
                 }
                 else
