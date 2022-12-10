@@ -7,6 +7,7 @@ public class PlayerAttack : MonoBehaviour
 
     public Camera gameCamera;
     public GameObject impactEffect;
+    public Animator WeaponAnimator;
     public int maxAmmo;
     public int currentAmmo;
 
@@ -49,6 +50,7 @@ public class PlayerAttack : MonoBehaviour
                 }
 
                 currentAmmo -= 1;
+                WeaponAnimator.SetTrigger("Weapon Fire");
             }
             else
             {
