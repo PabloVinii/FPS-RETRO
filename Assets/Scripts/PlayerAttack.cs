@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     public Camera gameCamera;
     public GameObject impactEffect;
     public Animator WeaponAnimator;
+    public Text ammoText;
     public int maxAmmo;
     public int currentAmmo;
 
@@ -17,6 +19,7 @@ public class PlayerAttack : MonoBehaviour
         //bloqueia o mouse na tela
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        ammoText.text = "MUNIÇÃO\n" + currentAmmo;
     }
 
     // Update is called once per frame
@@ -50,6 +53,7 @@ public class PlayerAttack : MonoBehaviour
                 }
 
                 currentAmmo -= 1;
+                ammoText.text = "MUNIÇÃO\n" + currentAmmo;
                 WeaponAnimator.SetTrigger("Weapon Fire");
             }
             else
