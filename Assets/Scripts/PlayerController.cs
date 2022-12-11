@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 keyboardInputs;
     private Vector2 mouseMovement;
     public Rigidbody2D playerRigidbody;
+    public Animator walkingAnimator;
 
 
     // chamado antes do start
@@ -43,6 +44,17 @@ public class PlayerController : MonoBehaviour
 
         //Movimento do Player
         playerRigidbody.velocity = (horizontalMoviment + verticalMoviment) * playerSpeed;
+
+        //Animação player parado
+        if (playerRigidbody.velocity.magnitude == 0)
+        {
+            walkingAnimator.Play("Player Idle");
+        }
+        //Player andando
+        else
+        {
+            walkingAnimator.Play("Player Walking");
+        }
     }
 
     private void MoveCamera()
