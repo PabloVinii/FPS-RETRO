@@ -19,12 +19,12 @@ public class PlayerAttack : MonoBehaviour
         //bloqueia o mouse na tela
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        ammoText.text = "MUNIÇÃO\n" + currentAmmo;
     }
 
     // Update is called once per frame
     void Update()
     {
+        ammoText.text = "MUNIÇÃO\n" + currentAmmo;
         Fire();
     }
     
