@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
+    //referencia ao objeto bullet
+    public GameObject bullet;
+    public Transform bulletPlace;
     public float enemyVelocity;
     public Transform[] pointsToWalk;
     private int currentpoint;
+    public float distanceToAttack;
+    public float timeBetweenAttacks;
+    public bool enemyAttacked;
     public bool enemyAlive;
     public bool enemyCanWalk;
     public float timeBetweenPoints;
@@ -18,6 +23,7 @@ public class Enemy : MonoBehaviour
     {
         enemyAlive = true;
         enemyCanWalk = true;
+        enemyAttacked = false;
         transform.position = pointsToWalk[0].position;
     }
 
@@ -25,6 +31,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         EnemyMoviment();
+        CheckDistance();
     }
 
     private void EnemyMoviment()
@@ -61,5 +68,36 @@ public class Enemy : MonoBehaviour
             currentpoint++;
             currentTime = timeBetweenPoints;
         }
+    }
+
+    private void CheckDistance()
+    {
+        // mede a distancia do inimigo com o player
+        if (Vector3.Distance(transform.position, PlayerController.instance.transform.position) < distanceToAttack)
+        {
+            AttackPlayer();
+        }
+        else
+        {
+            enemyCanWalk = true;
+        }
+    }
+
+    private void AttackPlayer()
+    {
+
+        if (enemyAttacked == false)
+        {
+            enemyCanWalk = false;
+            Instantiate(bullet, bulletPlace.position, bulletPlace.rotation);
+            enemyAttacked = true;
+        
+            //invocar chama um metodo de tanto em tanto tempo
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
+    }
+    private void ResetAttack()
+    {
+        enemyAttacked = false;
     }
 }
