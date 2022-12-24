@@ -10,9 +10,11 @@ public class PlayerAttack : MonoBehaviour
     public GameObject impactEffect;
     public Animator WeaponAnimator;
     public Text ammoText;
+    
     public int maxAmmo;
     public int currentAmmo;
-
+    public int damageToApply;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +47,12 @@ public class PlayerAttack : MonoBehaviour
                 {
                     Instantiate(impactEffect, raycastHited.point, raycastHited.transform.rotation);
                     Debug.Log("estou olhando para: " + raycastHited.transform.name);
+
+                    //captura o gameobject e compara sua tag
+                    if(raycastHited.transform.gameObject.CompareTag("Enemy"))
+                    {
+                        raycastHited.transform.gameObject.GetComponentInParent<Enemy>().DamageEnemy(damageToApply);
+                    }
                 }
                 else
                 {

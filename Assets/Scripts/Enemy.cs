@@ -7,16 +7,23 @@ public class Enemy : MonoBehaviour
     //referencia ao objeto bullet
     public GameObject bullet;
     public Transform bulletPlace;
-    public float enemyVelocity;
     public Transform[] pointsToWalk;
+
     private int currentpoint;
+    public int enemyMaxHealth;
+    public int enemyCurrentHealth;
+
+    public float enemyVelocity;
     public float distanceToAttack;
     public float timeBetweenAttacks;
+    public float timeBetweenPoints;
+    public float currentTime; 
+
     public bool enemyAttacked;
     public bool enemyAlive;
     public bool enemyCanWalk;
-    public float timeBetweenPoints;
-    public float currentTime; 
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +32,7 @@ public class Enemy : MonoBehaviour
         enemyCanWalk = true;
         enemyAttacked = false;
         transform.position = pointsToWalk[0].position;
+        enemyCurrentHealth = enemyMaxHealth;
     }
 
     // Update is called once per frame
@@ -96,8 +104,30 @@ public class Enemy : MonoBehaviour
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
+
     private void ResetAttack()
     {
         enemyAttacked = false;
     }
+
+    public void DamageEnemy(int damageToEnemy)
+    {
+        if (enemyAlive == true)
+        {
+            enemyCurrentHealth -= damageToEnemy;
+
+            if (enemyCurrentHealth <= 0)
+            {
+                enemyAlive = false;
+                enemyCanWalk = false;
+                EnemyDeath();
+            }
+        }
+    }
+
+    public void EnemyDeath()
+    {
+        Destroy(this.gameObject);
+    }
+
 }
