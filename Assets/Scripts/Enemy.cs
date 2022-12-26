@@ -26,8 +26,7 @@ public class Enemy : MonoBehaviour
 
     void Awake()
     {
-        animator = transform.GetComponent<Animator>();
-        
+        animator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -104,7 +103,7 @@ public class Enemy : MonoBehaviour
     private void AttackPlayer()
     {
 
-        if (enemyAttacked == false)
+        if (enemyAttacked == false && enemyAlive == true)
         {
             enemyCanWalk = false;
             animator.SetTrigger("Attack");
@@ -133,6 +132,8 @@ public class Enemy : MonoBehaviour
                 enemyAlive = false;
                 enemyCanWalk = false;
                 animator.SetTrigger("Death");
+                GetComponent<CircleCollider2D>().enabled = false;
+                GetComponentInChildren<CapsuleCollider>().enabled = false;
             }
         }
     }
