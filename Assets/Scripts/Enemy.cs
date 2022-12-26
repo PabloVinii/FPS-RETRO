@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public GameObject bullet;
     public Transform bulletPlace;
     public Transform[] pointsToWalk;
+    private Animator animator;
 
     private int currentpoint;
     public int enemyMaxHealth;
@@ -23,7 +24,11 @@ public class Enemy : MonoBehaviour
     public bool enemyAlive;
     public bool enemyCanWalk;
 
-    
+    void Awake()
+    {
+        animator = transform.GetComponent<Animator>();
+        
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -50,9 +55,14 @@ public class Enemy : MonoBehaviour
             {   
                 //mover para os pontos
                 transform.position = Vector3.MoveTowards(transform.position, pointsToWalk[currentpoint].position, enemyVelocity * Time.deltaTime);
-            
+                if (transform.position.y != pointsToWalk[currentpoint].position.y)
+                {
+                    animator.SetTrigger("Walking");
+                }
+                
                 if (transform.position.y == pointsToWalk[currentpoint].position.y)
                 {
+                    animator.SetTrigger("Idle");
                     WaitToWalk();
                 }
 
@@ -97,6 +107,7 @@ public class Enemy : MonoBehaviour
         if (enemyAttacked == false)
         {
             enemyCanWalk = false;
+            animator.SetTrigger("Attack");
             Instantiate(bullet, bulletPlace.position, bulletPlace.rotation);
             enemyAttacked = true;
         
@@ -115,12 +126,13 @@ public class Enemy : MonoBehaviour
         if (enemyAlive == true)
         {
             enemyCurrentHealth -= damageToEnemy;
+            animator.SetTrigger("Damage");
 
             if (enemyCurrentHealth <= 0)
             {
                 enemyAlive = false;
                 enemyCanWalk = false;
-                EnemyDeath();
+                animator.SetTrigger("Death");
             }
         }
     }
