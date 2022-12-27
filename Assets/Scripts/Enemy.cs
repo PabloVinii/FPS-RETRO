@@ -42,8 +42,12 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        EnemyMoviment();
-        CheckDistance();
+        if(GameManager.instance.PlayerAlive)
+        {
+            EnemyMoviment();
+            CheckDistance();
+        }
+        
     }
 
     private void EnemyMoviment()

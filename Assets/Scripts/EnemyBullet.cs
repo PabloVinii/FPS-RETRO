@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     public float bulletVelocity;
+    public int damageToApply;
 
     // Start is called before the first frame update
     void Start()
@@ -21,5 +22,15 @@ public class EnemyBullet : MonoBehaviour
     private void MoveBullet()
     {
         transform.Translate(Vector3.forward * bulletVelocity * Time.deltaTime);
+    }
+
+    //Dano ao Player
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<PlayerHealth>().DamagePlayer(damageToApply);
+        }
+        Destroy(this.gameObject);
     }
 }
