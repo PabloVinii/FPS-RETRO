@@ -22,4 +22,10 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    public void GameOver()
+    {
+        PlayerAlive = false;
+        Debug.Log("Game Over");
+    }
 }
