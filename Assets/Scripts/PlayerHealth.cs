@@ -6,14 +6,16 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth;
+    public int maxHealth = 100;
     public int currentHealth;
-    public Text healthText;
+    public HealthBar healthBar;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        healthText.text = "VIDA\n" + currentHealth;
+        healthBar.SetMaxHealth(maxHealth);
+        healthBar.SetHealth(currentHealth);
     }
 
     // Update is called once per frame
@@ -27,7 +29,8 @@ public class PlayerHealth : MonoBehaviour
         if(GameManager.instance.PlayerAlive == true)
         {
             currentHealth -= damageToPlayer;
-            healthText.text = "VIDA\n" + currentHealth;
+            healthBar.SetHealth(currentHealth);
+
             if(currentHealth <= 0)
             {
                 GameManager.instance.GameOver();
