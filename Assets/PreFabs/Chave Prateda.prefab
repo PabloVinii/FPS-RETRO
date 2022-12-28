@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2336693252131898442}
   - component: {fileID: 7556098717517085104}
   - component: {fileID: 2671701308003198803}
+  - component: {fileID: 6808032696058188950}
   m_Layer: 0
   m_Name: Chave Prateda
   m_TagString: Untagged
@@ -114,3 +115,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
+--- !u!114 &6808032696058188950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2747563164717191764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4953ef7354b232c468ec492a71151f32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoItem: 0
+  healthItem: 0
+  goldenKey: 0
+  silverKey: 1
+  ammoToGive: 0
+  lifeToGive: 0
