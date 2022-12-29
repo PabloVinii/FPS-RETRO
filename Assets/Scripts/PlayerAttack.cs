@@ -72,4 +72,18 @@ public class PlayerAttack : MonoBehaviour
 
         }
     }
+
+    public void ReloadAmmo(int ammoToReceive)
+    {
+        if (currentAmmo + ammoToReceive < maxAmmo)
+        {
+            currentAmmo += ammoToReceive;
+        }
+        else
+        {
+            currentAmmo = maxAmmo;
+        }
+
+        ammoText.text = "MUNIÇÃO\n" + currentAmmo;
+    }
 }

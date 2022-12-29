@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Pistol
+  - Shotgun
+  - DoubleBarrel
   layers:
   - Default
   - TransparentFX
