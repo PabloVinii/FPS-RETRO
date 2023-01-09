@@ -17,7 +17,7 @@ public class CollectableItems : MonoBehaviour
 
             if(healthItem == true)
             {
-            
+                other.gameObject.GetComponent<PlayerHealth>().AddLife(lifeToGive);
             }
 
             if(goldenKey == true)

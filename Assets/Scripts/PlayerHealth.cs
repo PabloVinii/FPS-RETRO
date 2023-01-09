@@ -38,4 +38,18 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public void AddLife(int lifeToAdd)
+    {
+        if (currentHealth + lifeToAdd < maxHealth)
+        {
+            currentHealth += lifeToAdd;
+        }
+        else
+        {
+            currentHealth = maxHealth;
+        }
+
+        healthBar.SetHealth(currentHealth);
+    }
+
 }
