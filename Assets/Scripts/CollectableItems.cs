@@ -26,12 +26,14 @@ public class CollectableItems : MonoBehaviour
 
             if(goldenKey == true)
             {
-            
+                GameManager.instance.isGoldenkey = true;
+                Destroy(this.gameObject);
             }
 
             if(silverKey == true)
             {
-            
+                GameManager.instance.isSilverkey= true;
+                Destroy(this.gameObject);            
             }
             
         }
