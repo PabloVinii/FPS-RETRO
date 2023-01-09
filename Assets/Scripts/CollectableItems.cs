@@ -17,7 +17,11 @@ public class CollectableItems : MonoBehaviour
 
             if(healthItem == true)
             {
-                other.gameObject.GetComponent<PlayerHealth>().AddLife(lifeToGive);
+                if (other.gameObject.GetComponent<PlayerHealth>().currentHealth != other.gameObject.GetComponent<PlayerHealth>().maxHealth)
+                {
+                    other.gameObject.GetComponent<PlayerHealth>().AddLife(lifeToGive);
+                    Destroy(this.gameObject);
+                }      
             }
 
             if(goldenKey == true)
@@ -29,7 +33,7 @@ public class CollectableItems : MonoBehaviour
             {
             
             }
-            Destroy(this.gameObject);
+            
         }
     }
 }
